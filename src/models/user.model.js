@@ -51,7 +51,7 @@ const userSchema = new Schema({
 userSchema.pre("save",async function(next){    // arrow function ke pass this ka refrence nhi hota that's why normal function is used
     if(! this.isModified("password"))  return next()
 
-    this.password = bcrypt.hash(this.password,10) // this thing will be run if pswd is modified
+    this.password = await bcrypt.hash(this.password,10) // this thing will be run if pswd is modified
         next()
 })  
 
